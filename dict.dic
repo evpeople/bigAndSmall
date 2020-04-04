@@ -1,0 +1,128 @@
+32
+56
+75
+89
+90
+/*   *   /*
+5th
+*/
+******///hell lll
+#include<stdio.h>
+int main()///***
+{//*****/
+     int n;
+     int a;//*****
+*****/
+     scanf("%d",&n);
+     for(int i=1;i<=(n/2);i++)
+     {/*
+*/eft
+          int he=0;
+          for(int x=i;x<=(n/2);x++)
+          {//*
+               a=x;
+               he=he+a;
+               if(he==n)*/
+               {/ ll
+                    printf("%d %d\n",i,a);
+               }
+          }//****
+     }
+     return 0;
+}
+32
+56
+75
+89
+90
+/*   *   /*
+5th
+*/
+/*****/******///hell lll
+#include<stdio.h>
+int main()///***
+{//*****/
+     int n;
+     int a;//*****
+*****/
+     scanf("%d",&n);
+     for(int i=1;i<=(n/2);i++)
+     {/*
+*/eft
+          int he=0;
+          for(int x=i;x<=(n/2);x++)
+          {//*
+               a=x;
+               he=he+a;
+               if(he==n)*/
+               {/ ll
+                    printf("%d %d\n",i,a);
+               }
+          }//****
+     }
+     return 0;
+}
+32
+56
+75
+89
+90
+/*   *   /*
+5th
+*/
+/*****/******///hell lll
+#include<stdio.h>
+int main()///***
+{//*****/
+     int n;
+     int a;//*****
+*****/
+     scanf("%d",&n);
+     for(int i=1;i<=(n/2);i++)
+     {/*
+*/eft
+          int he=0;
+          for(int x=i;x<=(n/2);x++)
+          {//*
+               a=x;
+               he=he+a;
+               if(he==n)*/
+               {/ ll
+                    printf("%d %d\n",i,a);
+               }
+          }//****
+     }
+     return 0;
+}
+32
+56
+75
+89
+90
+/*   *   /*
+5th
+*/
+/*****/******///hell lll
+#include<stdio.h>
+int main()///***
+{//*****/
+     int n;
+     int a;//*****
+*****/
+     scanf("%d",&n);
+     for(int i=1;i<=(n/2);i++)
+     {/*
+*/eft
+          int he=0;
+          for(int x=i;x<=(n/2);x++)
+          {//*
+               a=x;
+               he=he+a;
+               if(he==n)*/
+               {/ ll
+                    printf("%d %d\n",i,a);
+               }
+          }//****
+     }
+     return 0;
+}

@@ -1,0 +1,251 @@
+/*??????????????,???????????,?????????????“???????????,??????????”??????????????????,
+??????????????????????????????????ASCII???,??????????,???????,??????????????????
+????????????dict.dic?(?????????????10,?????????10.)
+?????????????????????????“!@#$%^&*”(????shift???1?8),?????
+?????,?????????????,??????????,
+??“hehasAAA”???????“he!@#$%^&*AAA”,???????????,?aaa?AAA????????,
+???????,????????????????,?“xabcx”?“abc”??????????????????????????????,????????????????????
+*/
+/*???????????,?????????,????,?????*/
+//#define _CRT_SECURE_NO_WARNINGS
+ 
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+//?????????????????????????????????,??????
+typedef struct PB
+{
+    long pos;//ftell???
+    char pbWords[14];
+    int ifEnd;//???????????????? 1???
+} pb;
+    FILE* ptr;
+   
+    pb* Word;
+
+    char pbWord[13][14];
+    char art[50][1000];
+pb* findPbWord(FILE* ftr, long pos);
+//void changeWord(char need[120],char Words[12]);
+int main()
+{
+        Word = (pb*)malloc(sizeof(pb));
+    Word->ifEnd = 0;
+     ptr = fopen("dict.dic", "r");
+    for (size_t i = 0; i < 10; i++)
+    {
+        memset(art, 0, 50 * 1000 * sizeof(char));
+    }
+ 
+    char tempc = '\0', temps[17];
+    int i = 0, j = 0, tempI, tempJ, len = 0;
+    long pos_temp = 0;
+    while (Word->ifEnd != 1)
+    {
+        Word = findPbWord(ptr, pos_temp);
+        strcpy(pbWord[i], Word->pbWords);
+        pos_temp = Word->pos;
+        i++;//????????
+    }
+    fclose(ptr);
+    tempI = i;
+    i = 0;
+    int flag = 0;
+    int x = -1;
+    while (!feof(stdin))
+    {
+        while (tempc != '\n')
+        {
+            tempc = getchar();
+            if (tempc == '\n')
+            {
+                flag = 1;
+            }
+ 
+            if (tempc != ' ')
+            {
+                temps[len] = tempc;
+                len++;
+                if (!flag)
+                {
+                    continue;
+                }
+ 
+ 
+            }
+            int flaglen = len;
+            flaglen--;
+            if (!flag)
+            {
+                temps[len] = ' ';
+                temps[len + 1] = '\0';
+                len = 0;
+            }
+            else
+            {
+                len--;
+                temps[len] = ' ';
+                temps[len + 1] = '\0';
+                len = 0;
+ 
+            }
+ 
+ 
+ 
+ 
+            while (i < tempI)
+            {
+                int rightOrWrong;
+                rightOrWrong = strcmp(temps, pbWord[i]);
+                if (!rightOrWrong)//??
+                {
+                    strcpy(temps, "!@#$%^&* ");
+                    break;
+                }
+                i++;
+            }
+            i = 0;
+            if (!flag)
+            {
+                strcat(art[j], temps);
+            }
+            else
+            {
+                temps[flaglen] = '\0';
+                strcat(art[j], temps);
+            }
+ 
+ 
+ 
+        }
+        flag = 0;
+        tempc = '\0';
+        j++;//j?????
+        x++;
+    }
+    tempJ = j;
+    j = 0;
+    while (j < tempJ)
+    {
+        puts(art[j]);
+        j++;
+    }
+    return 0;
+}
+//?????????????????????????????????,??????
+pb* findPbWord(FILE* ftr, long pos)
+{
+    pb* temp = (pb*)malloc(sizeof(pb));
+    char tempchar;
+    char temps[14];
+    int i = 0;
+    char a;
+    fseek(ftr, pos, SEEK_SET);
+    fgets(temps, 14, ftr);
+    strcpy(temp->pbWords, temps);
+    a = temp->pbWords[i];
+    i = 1;
+    while (a != '\n')
+    {
+        a = temp->pbWords[i];
+        i++;
+    }
+    temp->pbWords[i - 1] = ' ';
+    temp->pbWords[i] = '\0';
+    temp->pos = ftell(ftr);
+    tempchar = fgetc(ftr);
+    if (tempchar == EOF)
+    {
+        temp->ifEnd = 1;
+    }
+    return temp;
+}
+ 
+// void changeWord(char need[120],char Words[12])
+// {
+//     char*temp;
+//     int len=strlen(Words);
+ 
+//     temp=strstr(need,Words);
+//     while (temp!=NULL)
+//     {
+//         while ()
+//         {
+//             /* code */
+//         }
+ 
+//         *temp='!';
+//         *(temp+1)='@';
+//         *(temp+2)='#';
+//         *(temp+3)='$';
+//         *(temp+4)='%';
+//         *(temp+5)='^';
+//         *(temp+6)='&';
+//         *(temp+7)='*';
+//         temp=strstr(need,Words);
+//     }
+ 
+// }
+/**************************************************************
+    Problem: 1029
+    User: 2019211177
+    Language: C
+    Result: 编译错误
+****************************************************************/
+Main.c:23:2: warning: data definition has no type or storage class
+  ptr = fopen("dict.dic", "r");
+  ^
+Main.c:23:2: warning: type defaults to ‘int’ in declaration of ‘ptr’ [-Wimplicit-int]
+Main.c:23:2: error: conflicting types for ‘ptr’
+Main.c:22:8: note: previous declaration of ‘ptr’ was here
+  FILE* ptr;
+        ^
+Main.c:23:8: warning: initialization makes integer from pointer without a cast [-Wint-conversion]
+  ptr = fopen("dict.dic", "r");
+        ^
+Main.c:23:8: error: initializer element is not constant
+Main.c:25:2: warning: data definition has no type or storage class
+  Word = (pb*)malloc(sizeof(pb));
+  ^
+Main.c:25:2: warning: type defaults to ‘int’ in declaration of ‘Word’ [-Wimplicit-int]
+Main.c:25:2: error: conflicting types for ‘Word’
+Main.c:24:6: note: previous declaration of ‘Word’ was here
+  pb* Word;
+      ^
+Main.c:25:9: warning: initialization makes integer from pointer without a cast [-Wint-conversion]
+  Word = (pb*)malloc(sizeof(pb));
+         ^
+Main.c:25:9: error: initializer element is not constant
+Main.c:26:6: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘->’ token
+  Word->ifEnd = 0;
+      ^
+Main.c: In function ‘main’:
+Main.c:42:13: error: invalid type argument of ‘->’ (have ‘int’)
+  while (Word->ifEnd != 1)
+             ^
+Main.c:44:21: warning: passing argument 1 of ‘findPbWord’ makes pointer from integer without a cast [-Wint-conversion]
+   Word = findPbWord(ptr, pos_temp);
+                     ^
+Main.c:29:5: note: expected ‘FILE * {aka struct _IO_FILE *}’ but argument is of type ‘int’
+ pb* findPbWord(FILE* ftr, long pos);
+     ^
+Main.c:44:8: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+   Word = findPbWord(ptr, pos_temp);
+        ^
+Main.c:45:25: error: invalid type argument of ‘->’ (have ‘int’)
+   strcpy(pbWord[i], Word->pbWords);
+                         ^
+Main.c:46:18: error: invalid type argument of ‘->’ (have ‘int’)
+   pos_temp = Word->pos;
+                  ^
+Main.c:49:9: warning: passing argument 1 of ‘fclose’ makes pointer from integer without a cast [-Wint-conversion]
+  fclose(ptr);
+         ^
+In file included from Main.c:12:0:
+/usr/include/stdio.h:237:12: note: expected ‘FILE * {aka struct _IO_FILE *}’ but argument is of type ‘int’
+ extern int fclose (FILE *__stream);
+            ^
+Main.c: In function ‘findPbWord’:
+Main.c:143:2: warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
+  fgets(temps, 14, ftr);
+  ^
